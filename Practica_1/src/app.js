@@ -1,0 +1,34 @@
+import express from 'express';
+import morgan from 'morgan';
+import { createRoles } from './libs/initialSetup';
+import authRoutes from './routes/auth.routes'
+import pkgJSON from '../package.json';
+
+const app = express();
+
+// INITIAL CONFIG
+createRoles();
+
+// CONFIG
+app.set('packageJSON', pkgJSON);
+app.set('port', process.env.PORT || 3000);
+app.set('json spaces', 4);
+app.use(express.json());
+app.use(morgan('dev'));
+
+// ROUTES
+app.get('/', (res, req) => {
+	res.json({
+		name: pkgJSON.name,
+		description: pkgJSON.description,
+		version: pkgJSON.version,
+		author: pkgJSON.author,
+		licence: pkgJSON.license,
+		routes: {
+			auth: '/api/auth',
+		},
+	});
+});
+app.get('/api/auth', authRoutes)
+
+export default app;

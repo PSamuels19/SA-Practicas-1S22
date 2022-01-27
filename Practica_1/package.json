@@ -5,23 +5,32 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.ts",
-    "build": "tsc"
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "dev": "nodemon --exec npm run babel-node src/index.js",
+    "build": "babel src --out-dir build",
+    "start": "node dist/index.js"
   },
   "keywords": [
     "api",
     "nodejs",
     "jwt"
   ],
-  "author": "Pareja 9",
+  "author": "Software Avanzado - P9",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "bcryptjs": "2.4.3",
+    "cors": "2.8.5",
+    "dotenv": "14.3.2",
+    "express": "4.17.2",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "6.1.8",
+    "morgan": "1.10.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
-    "nodemon": "^2.0.15",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.5"
+    "@babel/cli": "7.16.8",
+    "@babel/core": "7.16.12",
+    "@babel/node": "7.16.8",
+    "@babel/preset-env": "7.16.11",
+    "nodemon": "2.0.15"
   }
 }
