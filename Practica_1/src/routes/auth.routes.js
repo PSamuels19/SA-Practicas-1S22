@@ -4,10 +4,10 @@ import { checkRolesExisted, checkDuplicateUsernameOrEmail } from '../middlewares
 
 const router = Router()
 
-router.get('', (req, res) => {
+router.get('/', (req, res) => {
     res.json({
-        login: '/signin',
-        logup: '/signup'
+        login: 'api/auth/signin',
+        logup: 'api/auth/signup'
     })
 })
 router.post('/signin', authControl.signIn)
