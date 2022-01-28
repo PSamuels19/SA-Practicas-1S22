@@ -11,13 +11,13 @@ createRoles();
 
 // CONFIG
 app.set('packageJSON', pkgJSON);
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 80);
 app.set('json spaces', 4);
 app.use(express.json());
 app.use(morgan('dev'));
 
 // ROUTES
-app.get('/', (res, req) => {
+app.get('/', (req, res) => {
 	res.json({
 		name: pkgJSON.name,
 		description: pkgJSON.description,
