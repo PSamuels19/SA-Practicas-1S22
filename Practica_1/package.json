@@ -1,0 +1,36 @@
+{
+  "name": "practica_1",
+  "version": "1.0.0",
+  "description": "Software avanzado: practica 1. Rest API con Json Web Tokens en NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "dev": "nodemon --exec npm run babel-node src/index.js",
+    "build": "babel src --out-dir build",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "api",
+    "nodejs",
+    "jwt"
+  ],
+  "author": "Software Avanzado - P9",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "cors": "2.8.5",
+    "dotenv": "14.3.2",
+    "express": "4.17.2",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "6.1.8",
+    "morgan": "1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.16.8",
+    "@babel/core": "7.16.12",
+    "@babel/node": "7.16.8",
+    "@babel/preset-env": "7.16.11",
+    "nodemon": "2.0.15"
+  }
+}
