@@ -1,0 +1,15 @@
+{
+  "name": "restaurante-server",
+  "version": "1.0.0",
+  "description": "Servidor restaurante para practica 1",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "fetch"
+  ],
+  "author": "Pareja 9",
+  "license": "ISC"
+}
