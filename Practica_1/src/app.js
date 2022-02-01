@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import { createRoles } from './libs/initialSetup';
 import authRoutes from './routes/auth.routes'
 import pkgJSON from '../package.json';
+import { logger } from '../config/logger';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(morgan('dev'));
 
 // ROUTES
 app.get('/', (req, res) => {
+	logger.log('info', `Server run on port ${app.get('port')}`)
 	res.json({
 		name: pkgJSON.name,
 		description: pkgJSON.description,
