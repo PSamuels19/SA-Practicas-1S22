@@ -1,14 +1,13 @@
 import express from 'express';
 import morgan from 'morgan';
-import { createRoles } from './libs/initialSetup';
-import authRoutes from './routes/auth.routes'
 import pkgJSON from '../package.json';
 import { logger } from '../config/logger';
+import authRoutes from './routes/auth.routes'
+import clienteRoutes from './routes/cliente.routes'
+import restauranteRoutes from './routes/restaurante.routes'
+import repartidorRoutes from './routes/repartidor.routes'
 
 const app = express();
-
-// INITIAL CONFIG
-createRoles();
 
 // CONFIG
 app.set('packageJSON', pkgJSON);
@@ -18,7 +17,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // ROUTES
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
 	logger.log('info', `Server run on port ${app.get('port')}`)
 	res.json({
 		name: pkgJSON.name,
@@ -32,5 +31,8 @@ app.get('/', (req, res) => {
 	});
 });
 app.use('/api/auth', authRoutes)
+app.use('/api/cliente', clienteRoutes)
+// app.use('/api/restaurante', restauranteRoutes)
+// app.use('/api/repartidor', repartidorRoutes)
 
 export default app;
