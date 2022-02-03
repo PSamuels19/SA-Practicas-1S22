@@ -4,12 +4,30 @@
   "description": "Servidor cliente de la practica 1",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "dev": "nodemon --exec npm run babel-node src/index.js",
+    "build": "babel src --out-dir build",
+    "start": "node dist/index.js"
   },
   "keywords": [
     "nodejs",
     "fetch"
   ],
   "author": "Pareja 9",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "cors": "2.8.5",
+    "dotenv": "14.3.2",
+    "express": "4.17.2",
+    "morgan": "1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.16.8",
+    "@babel/core": "7.16.12",
+    "@babel/node": "7.16.8",
+    "@babel/preset-env": "7.16.11",
+    "nodemon": "2.0.15"
+  }
 }

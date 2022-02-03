@@ -1,22 +1,22 @@
 import { Router } from "express";
 import { crearPedido, estadoRepartidor, estadoRestaurante } from "../controllers/cliente.controller";
-import { verifyToken } from '../middlewares/authAWT'
+import { clienteAccess } from '../middlewares/authAWT'
 
 const router = Router()
 
 router.post(
     '/',
-    [verifyToken],
+    [clienteAccess],
     crearPedido
 )
 router.post(
     '/restaurante/pedido/:id',
-    [verifyToken],
+    [clienteAccess],
     estadoRestaurante
 )
 router.post(
     '/repartidor/pedido/:id',
-    [verifyToken],
+    [clienteAccess],
     estadoRepartidor
 )
 
