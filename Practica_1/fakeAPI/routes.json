@@ -1,0 +1,8 @@
+{
+    "/usuario/:id": "/usuario?id=:id",
+    "/login/:email/:pass": "/usuario?email=:email&password=:pass",
+    "/check/username/:username": "/usuario?username=:username",
+    "/check/email/:email": "/usuario?email=:email",
+    "/pedido/:id": "/pedido?id=:id",
+    "/reparto/:id": "/reparto?id=:id"
+}

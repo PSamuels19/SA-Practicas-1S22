@@ -1,0 +1,59 @@
+{
+    "usuario": [
+        {
+            "id": 1,
+            "username": "Matthew",
+            "email": "mrosthorn0@purevolume.com",
+            "password": "AjsfhHVx",
+            "rolId": 1
+        },
+        {
+            "id": 2,
+            "username": "Libbie",
+            "email": "lkillbey1@wikimedia.org",
+            "password": "y66IiCZ",
+            "rolId": 2
+        },
+        {
+            "id": 3,
+            "username": "Josepha",
+            "email": "jshawcroft2@dagondesign.com",
+            "password": "BMtoCqc023zK",
+            "rolId": 1
+        },
+        {
+            "id": 4,
+            "username": "Tedie",
+            "email": "tjosephi3@google.com.au",
+            "password": "mtYwQR",
+            "rolId": 3
+        },
+        {
+            "id": 5,
+            "username": "Emmanuel",
+            "email": "eduffy4@ameblo.jp",
+            "password": "pOXI1vjVV",
+            "rolId": 3
+        }
+    ],
+    "rol": [
+        {
+            "id": 1,
+            "nombre": "Cliente"
+        },
+        {
+            "id": 2,
+            "nombre": "Restaurante"
+        },
+        {
+            "id": 3,
+            "nombre": "Repartidor"
+        }
+    ],
+    "pedido": [
+        {}
+    ],
+    "reparto": [
+        {}
+    ]
+}
