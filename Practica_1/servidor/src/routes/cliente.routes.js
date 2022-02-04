@@ -9,12 +9,12 @@ router.post(
     [clienteAccess],
     crearPedido
 )
-router.post(
+router.get(
     '/restaurante/pedido/:id',
     [clienteAccess],
     estadoRestaurante
 )
-router.post(
+router.get(
     '/repartidor/pedido/:id',
     [clienteAccess],
     estadoRepartidor

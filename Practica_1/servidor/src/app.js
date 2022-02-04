@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
 });
 app.use('/api/auth', authRoutes)
 app.use('/api/cliente', clienteRoutes)
-// app.use('/api/restaurante', restauranteRoutes)
-// app.use('/api/repartidor', repartidorRoutes)
+app.use('/api/restaurante', restauranteRoutes)
+app.use('/api/repartidor', repartidorRoutes)
 
 export default app;

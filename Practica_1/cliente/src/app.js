@@ -14,13 +14,13 @@ app.get('/', (req, res) => {
     res.json({ message: 'Cliente server' })
 })
 app.post('/pedido', (req, res) => {
-    res.json({ message: 'Cliente server' })
+    res.json({ message: 'Crear pedido' })
 })
 app.get('/pedido/:id', (req, res) => {
-    res.json({ message: 'Cliente server' })
+    res.json({ message: 'Ver estado de pedido' })
 })
 app.get('/reparto/:id', (req, res) => {
-    res.json({ message: 'Cliente server' })
+    res.json({ message: 'Ver estado reparto' })
 })
 
 export default app

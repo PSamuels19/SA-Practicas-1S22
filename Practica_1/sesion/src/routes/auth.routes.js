@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 })
 router.post('/signin', authControl.signIn)
 router.post('/verifyToken', authControl.verifyToken)
+router.post('/userSesion', authControl.verifyToken)
 
 export default router
