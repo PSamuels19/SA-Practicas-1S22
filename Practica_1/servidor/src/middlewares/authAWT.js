@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { logger } from '../../config/logger';
 import config from '../config';
 
 export const clienteAccess = async (req, res, next) => {
@@ -11,11 +12,12 @@ export const clienteAccess = async (req, res, next) => {
 		return res.status(result.status).json(result.data)
 	else {
 		const currentUser = result.data
-		console.log(currentUser)
 		if (currentUser.rolId === 1)
 			next()
-		else
+		else {
+			logger.log('error', `${new Date()}. Acceso denegado en servidor cliente para token ${token}`)
 			return res.status(401).json({ message: 'Acceso denegado' })
+		}
 	}
 }
 
@@ -29,10 +31,12 @@ export const restauranteAccess = async (req, res, next) => {
 		return res.status(result.status).json(result.data)
 	else {
 		const currentUser = result.data
-		if (currentUser.rowId === 2)
+		if (currentUser.rolId === 2)
 			next()
-		else
+		else {
+			logger.log('error', `${new Date()}. Acceso denegado en servidor restaurante para token ${token}`)
 			return res.status(401).json({ message: 'Acceso denegado' })
+		}
 	}
 }
 
@@ -44,22 +48,28 @@ export const repartidorAccess = async (req, res, next) => {
 		return res.status(result.status).json({ message: result.message })
 	else {
 		const currentUser = result.data
-		if (currentUser.rowId === 3)
+		if (currentUser.rolId === 3)
 			next()
-		else
+		else {
+			logger.log('error', `${new Date()}. Acceso denegado en servidor repartidor para token ${token}`)
 			return res.status(401).json({ message: 'Acceso denegado' })
+		}
 	}
 }
 
 export const verifyToken = async (token) => {
-	if (!token)
+	if (!token) {
+		logger.log('error', `${new Date()}. Token no proporcionado`)
 		return { status: 403, data: [], message: 'Token no encontrado' }
+	}
 
 	const response = await axios.post(
 		`${config.SESION_URI}/verifyToken`,
 		{ token }
 	)
-	if (response.status !== 200)
+	if (response.status !== 200) {
+		logger.log('error', `${new Date()}. Token ${token} no válido`)
 		return { status: response.status, data: [], message: response.data }
+	}
 	return { status: response.status, data: response.data, message: 'ok' }
 };
