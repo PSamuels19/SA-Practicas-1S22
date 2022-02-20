@@ -1,12 +1,3 @@
-# Practica 2
+# Practica 3
 
-Generar imagen docker
-
-Crear la imagen
-`docker build -t pareja9 .`
-
-Ver imagenes
-`docker images`
-
-Correr la imagen
-`docker run -it -p 3000:3000 pareja9`
+Implementación de Jenkins a la pagina creada en Docker.
