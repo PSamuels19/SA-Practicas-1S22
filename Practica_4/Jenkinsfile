@@ -46,7 +46,15 @@ pipeline {
 			steps {
 				dir("Practica_4/web-page 2.0") {
 					sh 'ls'
-					sh "echo DEPLOY"
+					sh 'git config user.name \"macochave\"'
+					sh 'git config user.email \"1773882260101@ingenieria.usac.edu.gt\"'
+					sh 'git checkout feature/practica4'
+					sh 'git pull'
+					sh 'git checkout deploy'
+					sh 'git pull'
+					sh 'git merge feature/practica4'
+					sh 'git push'
+					sh 'echo DEPLOY'
 				}
 			}
 		}
