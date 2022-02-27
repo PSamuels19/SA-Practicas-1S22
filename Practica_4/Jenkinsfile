@@ -6,7 +6,7 @@ pipeline {
 		stage ("build") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
-					// sh "npm install"
+					sh "npm install"
 					echo "BUILD"
 				}
 			}
@@ -15,7 +15,7 @@ pipeline {
 		stage ("Clone") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
-					// git 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
+					git 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
 					echo "CLONE"
 				}
 			}
@@ -35,8 +35,7 @@ pipeline {
 		stage ("Test") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
-					// sh "npm install"
-					echo "TEST"
+					sh "npm run test"
 				}
 			}
 		}
@@ -45,8 +44,7 @@ pipeline {
 		stage ("Deploy") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
-					// sh "npm install"
-					echo "TEST"
+					echo "DEPLOY"
 				}
 			}
 		}
