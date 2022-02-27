@@ -32,11 +32,21 @@ pipeline {
 			}
 		}
 
-		stage ("build") {
+		stage ("Test") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
 					// sh "npm install"
-					echo "BUILD"
+					echo "TEST"
+				}
+			}
+		}
+		
+		
+		stage ("Deploy") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					// sh "npm install"
+					echo "TEST"
 				}
 			}
 		}
