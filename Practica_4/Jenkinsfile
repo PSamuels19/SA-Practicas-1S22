@@ -5,7 +5,8 @@ pipeline {
 	stages {
 		stage ("build") {
 			steps {
-				dir("web-page 2.0") {
+				dir("Practica_4/web-page 2.0") {
+					sh 'ls'
 					sh 'npm install'
 					echo "BUILD"
 				}
@@ -14,7 +15,7 @@ pipeline {
 
 		stage ("Clone") {
 			steps {
-				dir("web-page 2.0") {
+				dir("Practica_4/web-page 2.0") {
 					git 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
 					echo "CLONE"
 				}
@@ -23,7 +24,7 @@ pipeline {
 
 		stage ("SonarQube analysis") {
 			steps {
-				dir("web-page 2.0") {
+				dir("Practica_4/web-page 2.0") {
 					// script {
 					// 	scannerHome = tool 'SonarQube'
 					// }
@@ -34,7 +35,7 @@ pipeline {
 
 		stage ("Test") {
 			steps {
-				dir("web-page 2.0") {
+				dir("Practica_4/web-page 2.0") {
 					sh "npm run test"
 				}
 			}
@@ -43,7 +44,7 @@ pipeline {
 		
 		stage ("Deploy") {
 			steps {
-				dir("web-page 2.0") {
+				dir("Practica_4/web-page 2.0") {
 					sh 'ls'
 					echo "DEPLOY"
 				}
