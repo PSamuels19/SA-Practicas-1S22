@@ -48,6 +48,8 @@ pipeline {
 					sh 'ls'
 					sh 'git config user.name \"macochave\"'
 					sh 'git config user.email \"1773882260101@ingenieria.usac.edu.gt\"'
+					sh 'git branch'
+					sh 'git status'
 					sh 'git checkout feature/practica4'
 					sh 'git pull'
 					sh 'git checkout deploy'
