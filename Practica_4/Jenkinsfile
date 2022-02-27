@@ -1,0 +1,44 @@
+pipeline {
+	agent any
+	tools { nodejs "NODEJS" }
+
+	stages {
+		stage ("build") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					// sh "npm install"
+					echo "BUILD"
+				}
+			}
+		}
+
+		stage ("Clone") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					// git 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
+					echo "CLONE"
+				}
+			}
+		}
+
+		stage ("SonarQube analysis") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					// script {
+					// 	scannerHome = tool 'SonarQube'
+					// }
+					echo "SONARQUBE ANALYSIS"
+				}
+			}
+		}
+
+		stage ("build") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					// sh "npm install"
+					echo "BUILD"
+				}
+			}
+		}
+	}
+}
