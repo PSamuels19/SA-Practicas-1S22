@@ -51,7 +51,7 @@ pipeline {
 					sh 'git status'
 					sh 'git checkout -f feature/practica4'
 					sh 'git pull'
-					sh 'git checkout deploy'
+					sh 'git checkout -f main'
 					sh 'git pull'
 					sh 'git merge feature/practica4'
 					sh 'git push'
