@@ -27,15 +27,8 @@ pipeline {
 
 		stage ("SonarQube Analysis") {
 			steps {
-				dir("Practica_4/web-page 2.0") {
-					withSonarQubeEnv('SonarQubePruebas') {
-						//sh './gradlew sonarqube'
-						sh "${scannerHome}/bin/sonar-scanner \
-						-Dsonar.projectKey=Practica4-SA \
-						//-Dsonar.sources=. \
-						-Dsonar.host.url=http://localhost:9000 \
-						-Dsonar.login=88eb1816ab2cda24f7064443db33f39a7b8532e2"
-					}
+				withSonarQubeEnv(installationName: 'sonarQubePruebas') { 
+				sh './mvnw clean sonar:sonar'
 					sh 'echo SONARQUBE ANALYSIS'
 				}
 			}
