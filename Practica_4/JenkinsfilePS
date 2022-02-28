@@ -6,6 +6,7 @@ pipeline {
 		stage ("build") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
+					sh 'rm -r node_modules/MODULE'
 					sh 'npm install'
 					sh 'echo BUILD'
 				}
