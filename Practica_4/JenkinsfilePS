@@ -15,7 +15,7 @@ pipeline {
 		stage ("Clone") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
-					git 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
+					git 'https://mEIWYO8EGtp3V3Sv2yhznYmVaz3km2m9G+9z6DtGzFw@github.com/PSamuels19/SA-Practicas-1S22.git'
 					sh 'echo CLONE'
 				}
 			}
