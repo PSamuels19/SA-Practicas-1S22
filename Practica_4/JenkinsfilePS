@@ -34,23 +34,6 @@ pipeline {
 			}
 		}
 
-		stage ("Deploy") {
-			steps {
-				dir("Practica_4/web-page 2.0") {
-					sh 'ls'
-					sh 'git config user.name \"PSamuels19\"'
-					sh 'git config user.email \"2172857321801@ingenieria.usac.edu.gt\"'
-					sh 'git checkout feature/practica4'
-					sh 'git pull'
-					sh 'git checkout deploy'
-					sh 'git pull'
-					sh 'git merge feature/practica4'
-					sh 'git push'
-					sh 'echo DEPLOY'
-				}
-			}
-		}
-
 		stage ("SonarQube Analysis") {
 			steps {
 				withSonarQubeEnv(installationName: 'sonarQubePruebas') { 
