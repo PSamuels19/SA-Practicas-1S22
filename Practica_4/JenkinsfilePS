@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+	triggers {
+        pollSCM('* * * * *')
+	}
+	
 	tools { nodejs "NODEJS" }
 
 	stages {
@@ -29,12 +33,12 @@ pipeline {
 					}
 
 					withSonarQubeEnv('SonarQubePruebas') {
-						sh './gradlew sonarqube'
-						//sh "${scannerHome}/bin/sonar-scanner \
-						//-Dsonar.projectKey=SonarQube \
+						//sh './gradlew sonarqube'
+						sh "${scannerHome}/bin/sonar-scanner \
+						-Dsonar.projectKey=Practica4-SA \
 						//-Dsonar.sources=. \
-						//-Dsonar.host.url=http://172.17.0.3:9000 \
-						//-Dsonar.login=[key]"
+						-Dsonar.host.url=http://localhost:9000 \
+						-Dsonar.login=88eb1816ab2cda24f7064443db33f39a7b8532e2"
 					}
 					sh 'echo SONARQUBE ANALYSIS'
 				}
