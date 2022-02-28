@@ -3,7 +3,7 @@ pipeline {
 	tools { nodejs "NODEJS" }
 
 	stages {
-		stage ("build") {
+		stage ("Build") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
 					sh 'npm install'
@@ -21,7 +21,7 @@ pipeline {
 			}
 		}
 
-		stage ("SonarQube analysis") {
+		stage ("SonarQube Analysis") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
 					script {
