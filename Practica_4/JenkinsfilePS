@@ -24,16 +24,7 @@ pipeline {
 				}
 			}
 		}
-
-		stage ("SonarQube Analysis") {
-			steps {
-				withSonarQubeEnv(installationName: 'sonarQubePruebas') { 
-				sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
-					sh 'echo SONARQUBE ANALYSIS'
-				}
-			}
-		}
-
+		
 		stage ("Test") {
 			steps {
 				dir("Practica_4/web-page 2.0") {
@@ -59,5 +50,15 @@ pipeline {
 				}
 			}
 		}
+
+		stage ("SonarQube Analysis") {
+			steps {
+				withSonarQubeEnv(installationName: 'sonarQubePruebas') { 
+				sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+					sh 'echo SONARQUBE ANALYSIS'
+				}
+			}
+		}
+
 	}
 }
