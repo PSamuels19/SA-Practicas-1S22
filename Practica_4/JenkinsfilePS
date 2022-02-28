@@ -29,7 +29,7 @@ pipeline {
 			steps {
 				dir("Practica_4/web-page 2.0") {
 					script {
-						scannerHome = tool 'SonarQubePruebas'
+						def scannerHome = tool 'SonarQubePruebas'
 					}
 
 					withSonarQubeEnv('SonarQubePruebas') {
