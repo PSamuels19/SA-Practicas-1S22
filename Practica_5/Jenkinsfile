@@ -1,0 +1,52 @@
+pipeline {
+	agent any
+	tools { nodejs "Node 16.14.0" }
+
+	stages {
+		stage ("build") {
+			steps {
+				dir("Practica_5/web-page") {
+					sh "npm install"
+					echo "BUILD"
+				}
+			}
+		}
+
+		stage ("Clone") {
+			steps {
+				dir("Practica_5/web-page") {
+					git branch: 'feature/practica5', credentialsId: '17e9a11f-bbb6-498b-bb1e-b60d4cff79c5', url: 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
+					echo "CLONE"
+				}
+			}
+		}
+
+		stage ("Test") {
+			steps {
+				dir("Practica_5/web-page") {
+					sh "npm run test"
+				}
+			}
+		}
+
+		stage ("Ansible Playbook") {
+			steps {
+				dir("Practica_5/web-page") {
+					ansiblePlaybook becomeUser: 'marco', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Practica_5/web-page/hosts.inv', playbook: 'Practica_5/web-page/playbook.yml'
+					// script {
+					// 	scannerHome = tool 'SonarQube'
+					// }
+					echo "ANSIBLE DEPLOY"
+				}
+			}
+		}
+		
+		stage ("Deploy") {
+			steps {
+				dir("Practica_5/web-page") {
+					echo "DEPLOY"
+				}
+			}
+		}
+	}
+}

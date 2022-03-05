@@ -1,0 +1,7 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update app
+      ansible.builtin.git:
+        repo: https://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@github.com/PSamuels19/SA-Practicas-1S22.git
+        dest: /home/prod/SA-Practica
