@@ -4,4 +4,4 @@
 
 La práctica 1 del laboratorio consiste en la realización de 3 microservicios y la autenticación por JWT
 
-- [](Practica_1/README.md)
+- [Practica_1](Practica_1/README.md)

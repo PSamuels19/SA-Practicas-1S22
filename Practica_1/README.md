@@ -84,7 +84,7 @@ Realizar una aplicación SOA para simular un servicio de crowdsourcing de comida
 ## Rutas permitidas
 
 - Para sesion
-  - Iniciar sesión [](http://localhost:80/api/auth/signin)
+  - Iniciar sesión [http://localhost:80/api/auth/signin]()
     ```json
     {
         "email": "mrosthorn0@purevolume.com",
@@ -92,14 +92,14 @@ Realizar una aplicación SOA para simular un servicio de crowdsourcing de comida
     }
     ```
 - Para cliente
-  - Solicitar pedido al restaurante [](http://localhost:80/api/cliente)
-  - Verificar estado del pedido al restaurante [](http://localhost:80/api/cliente/restaurante/pedido/:id)
-  - Verificar estado del pedido al repartidor [](http://localhost:80/api/cliente/repartidor/pedido/:id)
+  - Solicitar pedido al restaurante [http://localhost:80/api/cliente]()
+  - Verificar estado del pedido al restaurante [http://localhost:80/api/cliente/restaurante/pedido/:id]()
+  - Verificar estado del pedido al repartidor [http://localhost:80/api/cliente/repartidor/pedido/:id]()
 - Para repartidor
-  - Recibir pedido del cliente [](http://localhost:80/api/repartidor)
-  - Informar estado del pedido al cliente [](http://localhost:80/api/repartidor/restaurante/pedido/:id)
-  - Avisar al repartidor que ya está listo el pedido [](http://localhost:80/api/repartidor/repartidor/pedido/:id)
+  - Recibir pedido del cliente [http://localhost:80/api/repartidor]()
+  - Informar estado del pedido al cliente [http://localhost:80/api/repartidor/restaurante/pedido/:id]()
+  - Avisar al repartidor que ya está listo el pedido [http://localhost:80/api/repartidor/repartidor/pedido/:id]()
 - Para restaurante
-  - Recibir pedido del restaurante [](http://localhost:80/api/restaurante)
-  - Informar estado del pedido al cliente [](http://localhost:80/api/restaurante)
-  - Marcar como entragado [](http://localhost:80/api/restaurante)
+  - Recibir pedido del restaurante [http://localhost:80/api/restaurante]()
+  - Informar estado del pedido al cliente [http://localhost:80/api/restaurante]()
+  - Marcar como entragado [http://localhost:80/api/restaurante]()

@@ -1,0 +1,47 @@
+pipeline {
+	agent any
+	triggers {
+        pollSCM('* * * * *')
+	}
+	
+	tools { nodejs "nodejs" }
+
+	stages {
+		stage ("Build") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					sh 'npm install'
+					sh 'echo BUILD'
+				}
+			}
+		}
+
+		stage ("Clone") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					git branch: 'feature/practica4', credentialsId: 'git-creds', url: 'https://PSamuels19:mEIWYO8EGtp3V3Sv2yhznYmVaz3km2m9G+9z6DtGzFw@github.com/PSamuels19/SA-Practicas-1S22.git'
+					sh 'echo CLONE'
+				}
+			}
+		}
+		
+		stage ("Test") {
+			steps {
+				dir("Practica_4/web-page 2.0") {
+					sh "npm run test"
+					sh 'echo TEST'
+				}
+			}
+		}
+
+		stage ("SonarQube Analysis") {
+			steps {
+				withSonarQubeEnv(installationName: 'sonarQubePruebas') { 
+				sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+					sh 'echo SONARQUBE ANALYSIS'
+				}
+			}
+		}
+
+	}
+}
