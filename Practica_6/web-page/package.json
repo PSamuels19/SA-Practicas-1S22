@@ -1,0 +1,15 @@
+{
+  "name": "web-page",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "jest",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "vite": "^2.7.2"
+  }
+}
