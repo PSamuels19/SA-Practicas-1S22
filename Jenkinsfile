@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+	tools {
+		nodejs "NODEJS"
+		git "Git 2.20.1"
+	}
 	environment {
 
         DOCKERHUB_USER     = credentials('dockerhub_user')
