@@ -24,8 +24,10 @@ pipeline {
                 branch 'feature/practica6'
             }
             steps {
-                echo 'Running Practica 6'
-                sh 'ls'
+				dir("Practica_6/") {
+					echo 'PRACTICA 6'
+					sh 'ls'
+				}
             }
         }
         stage("BuildTests") {
@@ -33,11 +35,11 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				echo 'Building tests...'
-				sh '''
-					docker-compose -f docker-compose-tests.yml down
-					docker-compose -f docker-compose-tests.yml build
-				'''
+				dir("Practica_6/web-page") {
+					echo 'BUILD TEST'
+					sh 'ls'
+					sh 'npm install'
+				}
 			}
 		}
 		stage("RunTests") {
@@ -45,10 +47,10 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				echo 'Running tests...'
-				sh '''
-					docker-compose -f docker-compose-tests.yml up --exit-code-from SumaTest SumaTest
-				'''
+				dir("Practica_6/web-page") {
+					echo 'RUN TEST'
+					sh 'npm run test'
+				}
 			}
 		}
 		stage("Build") {
@@ -56,11 +58,13 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				echo 'Building docker images for deployment...'
-				sh '''
-					docker-compose -f docker-compose-dev.yml down
-					docker-compose -f docker-compose-dev.yml build
-				'''
+				dir("Practica_6/") {
+					echo 'BUILD'
+					sh '''
+						docker-compose -f docker-compose-dev.yml down
+						docker-compose -f docker-compose-dev.yml build
+					'''
+				}
 			}
 		}
 		stage("PushBuilds") {
@@ -68,11 +72,13 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				echo "Pushing docker images to DockerHub..."
-				sh '''
-					docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-					docker-compose -f docker-compose-dev.yml push
-				'''
+				dir("Practica_6/") {
+					echo "PUSH BUILD"
+					sh '''
+						docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+						docker-compose -f docker-compose-dev.yml push
+					'''
+				}
 			}
 		}
 		stage("DeployDev") {
@@ -80,18 +86,20 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				echo "Deploying to development..."
-				sh '''
-					echo "New deployment" >> deployments.txt
-					scp deployments.txt jenkins@${PUPPET_AGENT_URL_DEV}:${PUPPET_AGENT_HOME}/
-					
-					scp docker-compose-dev.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
-					scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-					scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-					ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
-					ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
-					ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
-				'''
+				dir("Practica_6/") {
+					echo "DEPLOY DEVELOP"
+					sh '''
+						echo "New deployment" >> deployments.txt
+						scp deployments.txt jenkins@${PUPPET_AGENT_URL_DEV}:${PUPPET_AGENT_HOME}/
+						
+						scp docker-compose-dev.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
+						scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+						scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
+						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
+						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
+					'''
+				}
 			}
 		}
 		stage("DeployProd") {
@@ -99,18 +107,20 @@ pipeline {
 				branch 'master'
 			}
 			steps {
-				echo 'Deploying to production...'
-				sh '''
-					echo "New deployment" >> deployments.txt
-					scp deployments.txt jenkins@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
-					scp docker-compose-prod.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
-					scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-					scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-					ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
-					ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
-					ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
-					
-				''' 
+				dir("Practica_6/") {
+					echo 'DEPLOY PRODUCTION'
+					sh '''
+						echo "New deployment" >> deployments.txt
+						scp deployments.txt jenkins@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
+						scp docker-compose-prod.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
+						scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+						scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
+						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
+						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
+						
+					''' 
+				}
 			}
 		}
 	}

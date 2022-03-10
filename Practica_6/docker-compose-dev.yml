@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  webpage:
+    container_name: webpage
+    image: macochave/sa-practica:lts
+    build:
+      dockerfile: Dockerfile
+      context: ./web-page/
+    ports:
+      - '8081:8080'
