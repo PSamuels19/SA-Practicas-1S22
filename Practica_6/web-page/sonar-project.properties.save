@@ -1,0 +1,13 @@
+# required metadata
+sonar.projectKey=web-page
+sonar.projectVersion=0.0.0
+sonar.sourceEncoding=UTF-8
+
+# path to source directories
+sonar.sources=web-page 2.0
+
+# excludes
+sonar.exc
+
+# coverage reporting
+sonar.javascript.lconv.reportPaths=<CODE_COVERAGE_LOCATION>
