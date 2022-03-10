@@ -1,13 +1,16 @@
 pipeline {
 	agent any
-	tools { nodejs "NODEJS" }
+	tools {
+		nodejs "NODEJS"
+		git "Git 2.17.1"
+	}
 
 	stages {
 		stage ("build") {
 			steps {
 				dir("Practica_6/web-page") {
-					sh "npm install"
 					echo "BUILD"
+					sh "npm install"
 				}
 			}
 		}
@@ -15,8 +18,8 @@ pipeline {
 		stage ("Clone") {
 			steps {
 				dir("Practica_6/web-page") {
-					git branch: 'feature6', credentialsId: '3240b950-adbc-43be-81e5-80c2ebb14e23', url: 'https://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@github.com/PSamuels19/SA-Practicas-1S22.git'
 					echo "CLONE"
+					git branch: 'feature/practica6', credentialsId: '3240b950-adbc-43be-81e5-80c2ebb14e23', url: 'https://github.com/PSamuels19/SA-Practicas-1S22.git'
 				}
 			}
 		}
@@ -35,6 +38,7 @@ pipeline {
 		stage ("Test") {
 			steps {
 				dir("Practica_6/web-page") {
+					echo "TEST"
 					sh "npm run test"
 				}
 			}
