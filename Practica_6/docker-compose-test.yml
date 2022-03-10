@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  webpage-test:
+    container_name: webpage-test
+    image: macochave/sa-practica2:v1
+    build:
+      dockerfile: Dockerfile.test
+      context: ./web-page/
