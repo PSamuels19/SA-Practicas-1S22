@@ -64,11 +64,10 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo 'BUILD'
-					sh 'pwd'
-					// sh '''
-					// 	docker-compose -f docker-compose-dev.yml down
-					// 	docker-compose -f docker-compose-dev.yml build
-					// '''
+					sh '''
+						docker-compose -f docker-compose-dev.yml down
+						docker-compose -f docker-compose-dev.yml build
+					'''
 				}
 			}
 		}
