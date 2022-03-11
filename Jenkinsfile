@@ -6,8 +6,8 @@ pipeline {
 	}
 	environment {
 
-        DOCKERHUB_USER     = credentials('dockerhub_user')
-        DOCKERHUB_PASSWORD = credentials('dockerhub_password')
+        // DOCKERHUB_USER     = credentials('dockerhub_user')
+        // DOCKERHUB_PASSWORD = credentials('dockerhub_password')
 
 		PUPPET_MASTER_URL  = '34.125.23.65'
 		PUPPET_AGENT_URL_DEV = "34.125.80.48"
@@ -75,20 +75,18 @@ pipeline {
 				dir("Practica_6/") {
 					echo 'BUILD'
 					sh '''
-						docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-					'''
-					sh '''
 					ls
 					docker --version
 					docker-compose --version
 					'''
-					// sh '''
-					// docker-compose -f docker-compose-dev.yml down
-					// docker-compose -f docker-compose-dev.yml build
-					// '''
-					sh '''
-					docker-compose -f docker-compose-dev.yml build
-					'''
+					withCredentials([certificate(aliasVariable: 'DOCKER_HUB', credentialsId: '', keystoreVariable: 'macochave', passwordVariable: 'P0|!m0rf!sm0')]) {
+						// some block
+						sh '''
+						docker login --username ${keystoreVariable} --password passwordVariable
+						docker-compose -f docker-compose-dev.yml down
+						docker-compose -f docker-compose-dev.yml build
+						'''
+					}
 				}
 			}
 		}
