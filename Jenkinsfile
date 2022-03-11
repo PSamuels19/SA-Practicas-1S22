@@ -13,8 +13,8 @@ pipeline {
 		PUPPET_AGENT_URL_DEV = "34.125.80.48"
 		PUPPET_AGENT_URL_PROD = "34.125.52.144"
 
-		PUPPET_MASTER_HOME = '/home/jenkins'
-		PUPPET_AGENT_HOME = '/home/jenkins'
+		PUPPET_MASTER_HOME = '/home/marco'
+		PUPPET_AGENT_HOME = '/home/marco'
 
 		PUPPET_MASTER_MANIFEST_DIR = '/etc/puppet/code/environments/production/manifests'
 		PUPPET_MASTER_MODULE_MANIFEST_DIR = '/etc/puppet/code/environments/production/modules/mymodule/manifests'
