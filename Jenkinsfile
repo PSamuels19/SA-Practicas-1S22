@@ -79,14 +79,10 @@ pipeline {
 					docker --version
 					docker-compose --version
 					'''
-					withCredentials([certificate(aliasVariable: 'DOCKER_HUB', credentialsId: '', keystoreVariable: 'macochave', passwordVariable: 'P0|!m0rf!sm0')]) {
-						// some block
-						sh '''
-						docker login --username ${keystoreVariable} --password passwordVariable
-						docker-compose -f docker-compose-dev.yml down
-						docker-compose -f docker-compose-dev.yml build
-						'''
-					}
+					sh '''
+					docker-compose -f docker-compose-dev.yml down
+					docker-compose -f docker-compose-dev.yml build
+					'''
 				}
 			}
 		}
