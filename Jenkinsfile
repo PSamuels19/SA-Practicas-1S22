@@ -76,7 +76,13 @@ pipeline {
 					echo 'BUILD'
 					sh '''
 					docker --version
-					docker-compose -f docker-compose-dev.yml down
+					docker-compose --version
+					'''
+					// sh '''
+					// docker-compose -f docker-compose-dev.yml down
+					// docker-compose -f docker-compose-dev.yml build
+					// '''
+					sh '''
 					docker-compose -f docker-compose-dev.yml build
 					'''
 				}
