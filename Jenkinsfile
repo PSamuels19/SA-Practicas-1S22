@@ -93,10 +93,10 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo "PUSH BUILD"
-					sh '''
-						docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-						docker-compose -f docker-compose-dev.yml push
-					'''
+					withCredentials([string(credentialsId: 'dockerhub_password', variable: 'dockerPwd')]) {
+						sh "docker login -u macochave -p ${dockerPwd}"
+					}
+					sh 'docker-compose -f docker-compose-dev.yml push'
 				}
 			}
 		}
