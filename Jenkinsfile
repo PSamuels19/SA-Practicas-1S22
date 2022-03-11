@@ -108,14 +108,14 @@ pipeline {
 				dir("Practica_6/") {
 					echo "DEPLOY DEVELOP"
 					sh 'echo "New deployment" >> deployments.txt'
-					sh 'scp deployments.txt jenkins@${PUPPET_AGENT_URL_DEV}:${PUPPET_AGENT_HOME}/'
+					sh 'scp deployments.txt marco@${PUPPET_AGENT_URL_DEV}:${PUPPET_AGENT_HOME}/'
 					
-					sh 'scp docker-compose-dev.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml'
-					sh 'scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
-					sh 'scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
-					sh 'ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/'
-					sh 'ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/'
-					sh 'ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/'
+					sh 'scp docker-compose-dev.yml marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml'
+					sh 'scp site.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
+					sh 'scp init.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
+					sh 'ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/'
+					sh 'ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/'
+					sh 'ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/'
 				}
 			}
 		}
@@ -128,13 +128,13 @@ pipeline {
 					echo 'DEPLOY PRODUCTION'
 					// sh '''
 					// 	echo "New deployment" >> deployments.txt
-					// 	scp deployments.txt jenkins@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
-					// 	scp docker-compose-prod.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
-					// 	scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-					// 	scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-					// 	ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
-					// 	ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
-					// 	ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
+					// 	scp deployments.txt marco@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
+					// 	scp docker-compose-prod.yml marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
+					// 	scp site.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+					// 	scp init.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+					// 	ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
+					// 	ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
+					// 	ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
 						
 					// ''' 
 				}
