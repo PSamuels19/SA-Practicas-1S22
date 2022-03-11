@@ -75,6 +75,9 @@ pipeline {
 				dir("Practica_6/") {
 					echo 'BUILD'
 					sh '''
+						docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+					'''
+					sh '''
 					ls
 					docker --version
 					docker-compose --version
