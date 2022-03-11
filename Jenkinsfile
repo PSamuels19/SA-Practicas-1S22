@@ -62,7 +62,7 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				dir("Practica_6/web_page") {
+				dir("Practica_6/") {
 					echo 'RUN SONARQUBE'
 				}
 			}
@@ -75,6 +75,7 @@ pipeline {
 				dir("Practica_6/") {
 					echo 'BUILD'
 					sh '''
+					ls
 					docker --version
 					docker-compose --version
 					'''
@@ -95,10 +96,10 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo "PUSH BUILD"
-					// sh '''
-					// 	docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-					// 	docker-compose -f docker-compose-dev.yml push
-					// '''
+					sh '''
+						docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+						docker-compose -f docker-compose-dev.yml push
+					'''
 				}
 			}
 		}
