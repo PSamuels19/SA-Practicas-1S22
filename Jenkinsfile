@@ -57,6 +57,16 @@ pipeline {
 				}
 			}
 		}
+		stage("SanarQube") {
+			when {
+				branch 'develop'
+			}
+			steps {
+				dir("Practica_6/web_page") {
+					echo 'RUN SONARQUBE'
+				}
+			}
+		}
 		stage("Build") {
 			when {
 				branch 'develop'
@@ -64,10 +74,10 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo 'BUILD'
-					sh '''
-						docker-compose -f docker-compose-dev.yml down
-						docker-compose -f docker-compose-dev.yml build
-					'''
+					// sh '''
+					// 	docker-compose -f docker-compose-dev.yml down
+					// 	docker-compose -f docker-compose-dev.yml build
+					// '''
 				}
 			}
 		}
@@ -78,10 +88,10 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo "PUSH BUILD"
-					sh '''
-						docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-						docker-compose -f docker-compose-dev.yml push
-					'''
+					// sh '''
+					// 	docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+					// 	docker-compose -f docker-compose-dev.yml push
+					// '''
 				}
 			}
 		}
@@ -113,17 +123,17 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo 'DEPLOY PRODUCTION'
-					sh '''
-						echo "New deployment" >> deployments.txt
-						scp deployments.txt jenkins@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
-						scp docker-compose-prod.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
-						scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-						scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
-						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
-						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
-						ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
+					// sh '''
+					// 	echo "New deployment" >> deployments.txt
+					// 	scp deployments.txt jenkins@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
+					// 	scp docker-compose-prod.yml jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
+					// 	scp site.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+					// 	scp init.pp jenkins@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
+					// 	ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
+					// 	ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/
+					// 	ssh jenkins@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/
 						
-					''' 
+					// ''' 
 				}
 			}
 		}
