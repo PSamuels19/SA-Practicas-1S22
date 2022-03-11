@@ -74,11 +74,11 @@ pipeline {
 			steps {
 				dir("Practica_6/") {
 					echo 'BUILD'
-					echo '${DOCKERHUB_USER}'
-					echo '${DOCKERHUB_PASSWORD}'
+					sh '''echo ${DOCKERHUB_USER}'''
+					sh '''echo ${DOCKERHUB_PASSWORD}'''
 					sh 'docker --version'
-					sh 'docker-compose -f docker-compose-dev.yml down'
-					sh 'docker-compose -f docker-compose-dev.yml build'
+					sh 'sudo docker-compose -f docker-compose-dev.yml down'
+					sh 'sudo docker-compose -f docker-compose-dev.yml build'
 				}
 			}
 		}
