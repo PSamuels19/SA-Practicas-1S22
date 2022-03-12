@@ -16,10 +16,10 @@ pipeline {
 		PUPPET_MASTER_HOME = '/home/marco'
 		PUPPET_AGENT_HOME = '/home/marco'
 
-		PUPPET_MASTER_MANIFEST_DIR = '/etc/puppet/code/environments/production/manifests'
-		PUPPET_MASTER_MODULE_MANIFEST_DIR = '/etc/puppet/code/environments/production/modules/mymodule/manifests'
-		PUPPET_MASTER_DEV_FILES_DIR = '/etc/puppet/code/environments/production/modules/mymodule/files'
-		PUPPET_MASTER_PROD_FILES_DIR = '/etc/puppet/code/environments/production/modules/mymodule/files'
+		PUPPET_MASTER_MANIFEST_DIR = '/etc/puppetlabs/code/environments/production/manifests'
+		PUPPET_MASTER_MODULE_MANIFEST_DIR = '/etc/puppetlabs/code/environments/production/modules/mymodule/manifests'
+		PUPPET_MASTER_DEV_FILES_DIR = '/etc/puppetlabs/code/environments/production/modules/mymodule/files'
+		PUPPET_MASTER_PROD_FILES_DIR = '/etc/puppetlabs/code/environments/production/modules/mymodule/files'
 
     }
 	stages {
