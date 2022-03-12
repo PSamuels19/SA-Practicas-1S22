@@ -9,8 +9,8 @@ pipeline {
         // DOCKERHUB_USER     = credentials('dockerhub_user')
         // DOCKERHUB_PASSWORD = credentials('dockerhub_password')
 
-		PUPPET_MASTER_URL  = '34.125.23.65'
-		PUPPET_AGENT_URL_DEV = "34.125.80.48"
+		PUPPET_MASTER_URL  = '34.125.80.48'
+		PUPPET_AGENT_URL_DEV = "34.125.23.65"
 		PUPPET_AGENT_URL_PROD = "34.125.52.144"
 
 		PUPPET_MASTER_HOME = '/home/marco'
@@ -110,9 +110,10 @@ pipeline {
 					sh 'echo "New deployment" >> deployments.txt'
 					sh 'scp -v -o StrictHostKeyChecking=no deployments.txt marco@${PUPPET_AGENT_URL_DEV}:${PUPPET_AGENT_HOME}/'
 					
-					sh 'scp -v -o StrictHostKeyChecking=no docker-compose-dev.yml marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml'
+					sh 'scp -v -o StrictHostKeyChecking=no docker-compose-dev.yml marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
 					sh 'scp -v -o StrictHostKeyChecking=no site.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
 					sh 'scp -v -o StrictHostKeyChecking=no init.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/'
+					sh 'ls'
 					sh 'ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/'
 					sh 'ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/site.pp ${PUPPET_MASTER_MANIFEST_DIR}/'
 					sh 'ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/init.pp ${PUPPET_MASTER_MODULE_MANIFEST_DIR}/'
@@ -129,7 +130,7 @@ pipeline {
 					sh '''
 						echo "New deployment" >> deployments.txt
 						scp -v -o StrictHostKeyChecking=no deployments.txt marco@${PUPPET_AGENT_URL_PROD}:${PUPPET_AGENT_HOME}/
-						scp -v -o StrictHostKeyChecking=no docker-compose-prod.yml marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/docker-compose.yml
+						scp -v -o StrictHostKeyChecking=no docker-compose-prod.yml marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
 						scp -v -o StrictHostKeyChecking=no site.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
 						scp -v -o StrictHostKeyChecking=no init.pp marco@${PUPPET_MASTER_URL}:${PUPPET_MASTER_HOME}/
 						ssh marco@${PUPPET_MASTER_URL} sudo mv ${PUPPET_MASTER_HOME}/docker-compose.yml ${PUPPET_MASTER_DEV_FILES_DIR}/
