@@ -1,34 +1,17 @@
 pipeline {
 	agent any
 	tools {
-		nodejs "NODEJS"
-		git "Git 2.20.1"
+		nodejs 'NODEJS'
+		git 'Git 2.20.1'
+		terraform 'terraform-1.1.7'
 	}
-	environment {
-
-        // DOCKERHUB_USER     = credentials('dockerhub_user')
-        // DOCKERHUB_PASSWORD = credentials('dockerhub_password')
-
-		PUPPET_MASTER_URL  = '34.125.80.48'
-		PUPPET_AGENT_URL_DEV = "34.125.23.65"
-		PUPPET_AGENT_URL_PROD = "34.125.52.144"
-
-		PUPPET_MASTER_HOME = '/home/marco'
-		PUPPET_AGENT_HOME = '/home/marco'
-
-		PUPPET_MASTER_MANIFEST_DIR = '/etc/puppetlabs/code/environments/production/manifests'
-		PUPPET_MASTER_MODULE_MANIFEST_DIR = '/etc/puppetlabs/code/environments/production/modules/mymodule/manifests'
-		PUPPET_MASTER_DEV_FILES_DIR = '/etc/puppetlabs/code/environments/production/modules/mymodule/files'
-		PUPPET_MASTER_PROD_FILES_DIR = '/etc/puppetlabs/code/environments/production/modules/mymodule/files'
-
-    }
 	stages {
-		stage("feature/practica6") {
+		stage("feature") {
             when {
-                branch 'feature/practica6'
+                branch 'feature/practica7'
             }
             steps {
-				dir("Practica_6/") {
+				dir("Practica_7/") {
 					echo 'PRACTICA 6'
 					sh 'ls'
 				}
@@ -36,7 +19,7 @@ pipeline {
         }
         stage("BuildTests") {
 			when {
-				branch 'develop'
+				branch 'feature/practica7'
 			}
 			steps {
 				dir("Practica_6/web-page") {
@@ -48,12 +31,34 @@ pipeline {
 		}
 		stage("RunTests") {
 			when {
-				branch 'develop'
+				branch 'feature/practica7'
 			}
 			steps {
 				dir("Practica_6/web-page") {
 					echo 'RUN TEST'
 					sh 'npm run test'
+				}
+			}
+		}
+		stage("Terraform Init") {
+			when {
+				branch 'feature/practica7'
+			}
+			steps {
+				dir("Practica_6/web-page") {
+					echo 'RUN TERRAFORM'
+					sh 'terraform init'
+				}
+			}
+		}
+		stage("Terraform Apply") {
+			when {
+				branch 'feature/practica7'
+			}
+			steps {
+				dir("Practica_6/web-page") {
+					echo 'RUN TERRAFORM'
+					sh 'terraform apply --auto-approve'
 				}
 			}
 		}
