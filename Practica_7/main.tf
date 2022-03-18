@@ -7,7 +7,7 @@ terraform {
 	}
 }
 
-providers "google" {
+provider "google" {
 	credentials = file("/home/terraform-user.json")
 	project = "instance-terraform"
 	region = "us-west4"

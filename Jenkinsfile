@@ -49,6 +49,9 @@ pipeline {
 					echo 'RUN TERRAFORM'
 					sh 'ls'
 					sh 'terraform init'
+					sh 'ls'
+					sh 'terraform fmt'
+					sh 'terraform validate'
 				}
 			}
 		}
