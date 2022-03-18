@@ -11,7 +11,7 @@ pipeline {
                 branch 'feature/practica7'
             }
             steps {
-				dir("Practica_7/") {
+				dir("Practica_7/web-page") {
 					echo 'PRACTICA 6'
 					sh 'ls'
 				}
@@ -22,7 +22,7 @@ pipeline {
 				branch 'feature/practica7'
 			}
 			steps {
-				dir("Practica_6/web-page") {
+				dir("Practica_7/web-page") {
 					echo 'BUILD TEST'
 					sh 'ls'
 					sh 'npm install'
@@ -34,7 +34,7 @@ pipeline {
 				branch 'feature/practica7'
 			}
 			steps {
-				dir("Practica_6/web-page") {
+				dir("Practica_7/web-page") {
 					echo 'RUN TEST'
 					sh 'npm run test'
 				}
@@ -45,7 +45,7 @@ pipeline {
 				branch 'feature/practica7'
 			}
 			steps {
-				dir("Practica_6/web-page") {
+				dir("Practica_7/web-page") {
 					echo 'RUN TERRAFORM'
 					sh 'terraform init'
 				}
@@ -56,7 +56,7 @@ pipeline {
 				branch 'feature/practica7'
 			}
 			steps {
-				dir("Practica_6/web-page") {
+				dir("Practica_7/web-page") {
 					echo 'RUN TERRAFORM'
 					sh 'terraform apply --auto-approve'
 				}
@@ -67,7 +67,7 @@ pipeline {
 				branch 'develop'
 			}
 			steps {
-				dir("Practica_6/") {
+				dir("Practica_7/web-page") {
 					echo 'RUN SONARQUBE'
 				}
 			}
