@@ -45,8 +45,9 @@ pipeline {
 				branch 'feature/practica7'
 			}
 			steps {
-				dir("Practica_7/web-page") {
+				dir("Practica_7/") {
 					echo 'RUN TERRAFORM'
+					sh 'ls'
 					sh 'terraform init'
 				}
 			}
@@ -56,8 +57,9 @@ pipeline {
 				branch 'feature/practica7'
 			}
 			steps {
-				dir("Practica_7/web-page") {
+				dir("Practica_7/") {
 					echo 'RUN TERRAFORM'
+					sh 'ls'
 					sh 'terraform apply --auto-approve'
 				}
 			}
