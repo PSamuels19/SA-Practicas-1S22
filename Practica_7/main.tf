@@ -8,8 +8,8 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("./terraform-user.json")
-  project     = "My First Project"
+  credentials = file("service_account_total.json")
+  project     = "spheric-backup-343616"
   region      = "us-east1"
   zone        = "us-east1-c"
 }
