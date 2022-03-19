@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket          = "tfstate-bucket-4291-pareja9-default"
+    bucket          = "tfstate-bucket-4291-terraform-default"
     prefix          = "vm/terraform.tfstate"
 
   }
