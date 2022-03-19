@@ -3,12 +3,12 @@
 ************************************************************************************************************************************************************/
 
 
-environment = "dev"
+environment = "instance"
 gcp_vpc_name = "default"
 gcp_subnet_1 = "default"
 gcp_region = "us-central1"
 gcp_project_id = "spheric-backup-343616"
-client = "pareja9"
+client = "terraform"
 gcp_vpc_cidr = "172.31.0.0/16"
 gcp_zone = "us-central1_c"
 zones = ["us-central1a","us-central1b","us-central1_c"]
