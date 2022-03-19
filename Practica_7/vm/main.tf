@@ -1,11 +1,11 @@
 resource "google_compute_address" "static" {
-  name = "ip-external-ideasextraordinarias"
+  name = "ip-external-terraform"
 }
 
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "e2-medium"
-  zone         =  "us-central1_c"  
+  zone         =  "us-central1-c"  
   tags = [
     "${var.environment}-vm-http",
     "${var.environment}-vm-ssh"
@@ -42,7 +42,7 @@ resource "google_compute_firewall" "http" {
     ports    = ["80", "443"]
   }
 
-  target_tags   = ["${var.environment}-bastion-http"]
+  target_tags   = ["${var.environment}-vm-http"]
   source_ranges = ["0.0.0.0/0"]
 }
 
@@ -55,6 +55,6 @@ resource "google_compute_firewall" "ssh" {
     ports    = ["22"]
   }
 
-  target_tags   = ["${var.environment}-bastion-ssh"]
+  target_tags   = ["${var.environment}-vm-ssh"]
   source_ranges = ["0.0.0.0/0"]
 }
