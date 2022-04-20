@@ -1,8 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const controller = require('./controller/index.controller')
 
 let counter = 0
+
+app.use(cors({
+    origin: '*'
+}))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
     try {
