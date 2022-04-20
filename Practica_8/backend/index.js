@@ -5,6 +5,8 @@ const controller = require('./controller/index.controller')
 
 let counter = 0
 
+const port = process.env.PORT || 3000;
+
 app.use(cors({
     origin: '*'
 }))
@@ -30,6 +32,6 @@ app.post('/', (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Example app listening on port 3000!');
+app.listen(port, () => {
+    console.log(`Server up and running on port ${port}!`);
 });
