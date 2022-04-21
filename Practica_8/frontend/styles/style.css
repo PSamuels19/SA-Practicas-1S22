@@ -87,6 +87,14 @@ body {
     margin: 10px;
 }
 
+.btn:hover {
+    filter: saturate(0.5);
+}
+
+.btn:active {
+    filter: brightness(0.5)
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --primary-color: #141414;

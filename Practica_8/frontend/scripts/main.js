@@ -1,7 +1,9 @@
 let resultParrafo = document.querySelector('#result');
 
+const URI = process.env.URI || 'http://localhost:3000';
+
 const handlePost = () => {
-    fetch('http://localhost:3000', {
+    fetch(URI, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,7 +22,7 @@ const handlePost = () => {
 }
 
 const handleGet = () => {
-    fetch('http://localhost:3000')
+    fetch(URI)
         .then(res => res.json())
         .then(response => {
             resultParrafo.textContent = `Consulta #${response.value}`;
