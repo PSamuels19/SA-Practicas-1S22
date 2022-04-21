@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  frontend:
+    image: macochave/sa-frontend-p8
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+  backend:
+    image: macochave/sa-backend-p8
+    ports:
+      - "3000:3000"

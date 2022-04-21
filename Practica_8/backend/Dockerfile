@@ -1,6 +1,4 @@
-FROM node:lts-stretch
-
-RUN npm install -g http-server
+FROM node:lts-alpine
 
 WORKDIR /app
 
@@ -12,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["start"]
+CMD npm start
