@@ -1,15 +1,15 @@
-FROM node:lts-alpine
+FROM nginx
 
-RUN npm install -g http-server
+RUN apk add nano && apk add curl
 
-WORKDIR /app
+COPY ./index.html /usr/share/nginx/html
 
-COPY package*.json ./
+COPY ./styles /usr/share/nginx/html
 
-RUN npm install
+COPY ./scripts /usr/share/nginx/html
 
-COPY . .
+RUN rm -rf /etc/nginx/conf.d/default.conf
 
-EXPOSE 8080
+COPY ./nginx.conf /etc/nginx/conf.d
 
-CMD ["http-server", "./"]
+EXPOSE 80

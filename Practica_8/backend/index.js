@@ -13,7 +13,7 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     try {
         res.status(200).json({ message: 'Get request successful', value: counter });
     } catch (error) {
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     }
 });
 
-app.post('/', (req, res) => {
+app.post('/api', (req, res) => {
     try {
         controller.addCounter(counter, (value) => {
             counter = value

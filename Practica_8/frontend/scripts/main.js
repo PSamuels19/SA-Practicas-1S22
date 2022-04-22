@@ -1,6 +1,6 @@
 let resultParrafo = document.querySelector('#result');
 
-const URI = 'http://localhost:3000';
+const URI = '/api/';
 
 const handlePost = () => {
     fetch(URI, {
