@@ -1,6 +1,6 @@
 FROM nginx
 
-RUN apk add nano && apk add curl
+# RUN sudo apt install nano && sudo apt install curl
 
 COPY ./index.html /usr/share/nginx/html
 
