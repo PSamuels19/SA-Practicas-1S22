@@ -18,10 +18,5 @@ spec:
       containers:
         - name: frontend-container
           image: macochave/sa-frontend-p8
-          imagePullPolicy: Never
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
           ports:
             - containerPort: 80

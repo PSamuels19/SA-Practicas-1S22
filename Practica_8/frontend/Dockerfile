@@ -4,9 +4,9 @@ FROM nginx
 
 COPY ./index.html /usr/share/nginx/html
 
-COPY ./styles /usr/share/nginx/html
+COPY ./styles /usr/share/nginx/html/styles
 
-COPY ./scripts /usr/share/nginx/html
+COPY ./scripts /usr/share/nginx/html/scripts
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
 

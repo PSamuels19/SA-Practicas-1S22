@@ -18,10 +18,5 @@ spec:
       containers:
         - name: p8-node-container
           image: macochave/sa-backend-p8
-          imagePullPolicy: Never
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: 500m
           ports:
             - containerPort: 3000
